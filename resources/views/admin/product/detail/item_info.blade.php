@@ -23,6 +23,10 @@
                             <input id="price" type="number" name="price" class="form-control">
                         </div>
                         <div class="col-md-2">
+                            <label for="shipping_price" class="form-label">هزینه ی ارسال کلی (تومان)</label>
+                            <input id="shipping_price" type="number" name="shipping_price" class="form-control">
+                        </div>
+                        <div class="col-md-2">
                             <label for="status" class="form-label">وضعیت</label>
                             <select id="status" name="status" class="form-select">
                                 <option value="1" selected>فعال</option>

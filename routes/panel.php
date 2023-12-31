@@ -53,6 +53,14 @@ Route::controller(ProductController::class)->prefix("product")->group(function (
         Route::post("store" , "store")->name("product.item.store");
         Route::get("show/{item}" , "show")->name("product.item.show");
         Route::post("update/{item}" , "update")->name("product.item.update");
+
+        Route::controller(ShippingPriceController::class)->prefix("{item:id}/shipping_prices")->group(function (){
+           // Route::get("index" , "index")->name("product.shipping_price.index");
+            Route::post("store" , "store")->name("item.shipping_price.store");
+            Route::post("update/{shipping_price}" , "update")->name("item.shipping_price.update");
+            Route::delete("delete/{shipping_price}" , "delete")->name("item.shipping_price.delete");
+        });
+
     });
 
     Route::controller(FeatureProductController::class)->prefix("{product:slug}/features")->group(function (){
@@ -62,12 +70,6 @@ Route::controller(ProductController::class)->prefix("product")->group(function (
         Route::delete("delete/{feature}" , "delete")->name("product.feature.delete");
     });
 
-    Route::controller(ShippingPriceController::class)->prefix("{product:slug}/shipping_prices")->group(function (){
-        Route::get("index" , "index")->name("product.shipping_price.index");
-        Route::post("store" , "store")->name("product.shipping_price.store");
-        Route::post("update/{shipping_price}" , "update")->name("product.shipping_price.update");
-        Route::delete("delete/{shipping_price}" , "delete")->name("product.shipping_price.delete");
-    });
 
     Route::controller(ProductImageController::class)->prefix("{product:slug}/images")->group(function (){
         Route::get("index" , "index")->name("product.image.index");

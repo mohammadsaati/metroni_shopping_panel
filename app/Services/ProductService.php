@@ -26,8 +26,6 @@
             //create features
             $product->features()->sync($data["features"]);
 
-            //create shipping
-            $product->shippingPrice()->saveMany(self::createShippingModel($data["shipping_prices"]));
 
             $product->categories()->sync($data["categories"]);
 
@@ -44,7 +42,7 @@
 
             $product->categories()->sync($data["categories"]);
 
-            $product->cities()->sync($data["cities"]);
+            $product->cities()->sync($data["cities"]??[]);
 
         });
      }
@@ -59,17 +57,7 @@
 
      }
 
-     private function createShippingModel(array $shipping_prices) : array
-     {
-        $shippings = [];
 
-        foreach ($shipping_prices as $shipping)
-        {
-            $shippings[] = new ShippingPrice($shipping);
-        }
-
-        return $shippings;
-     }
 
 
 
@@ -79,7 +67,6 @@
             "name"             =>  $data["name"] ,
             "en_name"          =>  $data["en_name"] ,
             "description"      =>  $data["description"] ,
-            "shipping_price"   =>  $data["shipping_price"] ,
             "category_id"      =>  $data["category_id"] ,
             "brand_id"         =>  $data["brand_id"]??null    ,
             "is_amazing"       =>  $data["is_amazing"]??null ,

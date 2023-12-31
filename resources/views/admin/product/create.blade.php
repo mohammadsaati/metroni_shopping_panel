@@ -23,11 +23,6 @@
                    تغیرات قیمیت ها
                </a>
            </li>
-           <li class="nav-item mx-3">
-               <a class="nav-link" data-bs-toggle="tab" href="#city_shipping">
-                    هزینه های ارسال
-               </a>
-           </li>
 
            <li class="nav-item mx-3">
                <button type="submit" class="btn btn-success">
@@ -43,9 +38,7 @@
            <div class="tab-pane fade" id="item_info" role="tabpanel">
                @include("admin.product.detail.item_info" , $data)
            </div>
-           <div class="tab-pane fade" id="city_shipping" role="tabpanel">
-               @include("admin.product.detail.city_shipping" , $data)
-           </div>
+
            <div class="tab-pane fade" id="features_info" role="tabpanel">
                @include("admin.product.detail.features_info" , $data)
            </div>

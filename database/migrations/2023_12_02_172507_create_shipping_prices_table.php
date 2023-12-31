@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shipping_prices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("city_id");
-            $table->unsignedBigInteger("product_id");
+            $table->unsignedBigInteger("item_id");
             $table->integer("price");
             $table->timestamps();
 
@@ -22,7 +22,7 @@ return new class extends Migration
                 ->onUpdate("cascade")
                 ->onDelete("restrict");
 
-            $table->foreign("product_id")->references("id")->on("products")
+            $table->foreign("item_id")->references("id")->on("items")
                 ->onUpdate("cascade")
                 ->onDelete("restrict");
 

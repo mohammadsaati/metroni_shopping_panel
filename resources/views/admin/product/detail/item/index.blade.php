@@ -43,11 +43,7 @@
                         <tr @if(!$item->status) class="bg-danger bg-opacity-50" @endif>
                             <td>{{ $i }}</td>
                             <td>
-                                <select name="size_id" class="form-select">
-                                    @foreach($data["sizes"] as $size)
-                                        <option @if($item->sise_id == $size->id) selected @endif value="{{ $size->id }}">{{ $size->value }}</option>
-                                    @endforeach
-                                </select>
+                               {{ $item->size->value }}
                             </td>
                             <td>{{ $item->stock }}</td>
                             <td>{{ $item->prices()->latest()->first()->after }}</td>

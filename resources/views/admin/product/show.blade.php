@@ -104,12 +104,6 @@
 
 
                <div class="mb-10 border border-1 border-secondary max-shadow p-5">
-                   <div class="row mb-10">
-                       <div class="col-12">
-                           <label for="shipping_price" class="required form-label">هزینه ی ارسال (کلی)</label>
-                           <input id="shipping_price" type="number" name="shipping_price" value="{{ $data["product"]->shipping_price }}" class="form-control">
-                       </div>
-                   </div>
                    <div class="row">
                        <div class="col-6">
                            <label for="brand" class="form-label">برند</label>

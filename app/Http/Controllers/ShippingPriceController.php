@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Product\Shipping\CreateShippingRequest;
 use App\Http\Requests\Product\Shipping\UpdateShippingRequest;
 use App\Models\City;
+use App\Models\Item;
 use App\Models\Product;
 use App\Models\ShippingPrice;
 use App\Services\ShippingPriceService;
@@ -41,7 +42,7 @@ class ShippingPriceController extends Controller
         return redirect()->route("product.shipping_price.index" , $product->slug);
     }
 
-    public function delete(Product $product , ShippingPrice $shipping_price)
+    public function delete(Product $product , Item $item , ShippingPrice $shipping_price)
     {
         $this->service->deleteShipping($shipping_price);
 

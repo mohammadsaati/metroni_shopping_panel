@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\PublicFilter;
 use App\Http\Requests\Product\Item\CreateItemRequest;
 use App\Http\Requests\Product\Item\UpdateItemRequest;
+use App\Models\City;
 use App\Models\Item;
 use App\Models\Product;
 use App\Models\Size;
@@ -21,7 +22,7 @@ class ItemController extends Controller
     public function index(PublicFilter $filter , Product $product)
     {
         $data["title"] = "لیست قیمت ها";
-        $data["items"] = $this->service->showAll($filter);
+        $data["items"] = $product->items()->orderBy("id")->paginate(20);
         $data["product"] = $product;
         $data["sizes"] = Size::all();
 
@@ -30,11 +31,12 @@ class ItemController extends Controller
 
     public function create(Product $product)
     {
-        addVendors(["jalali-date-picker"]);
+        addVendors(["jalali-date-picker" , "formrepeater"]);
 
         $data["title"] = "اضافه کردن لیست قیمیت";
         $data["sizes"] = Size::all();
         $data["product"] = $product;
+        $data["cities"] =   City::GetActiveCities()->get();
 
         return view($this->view_folder."create" , compact("data"));
     }
@@ -48,13 +50,14 @@ class ItemController extends Controller
 
     public function show(Product $product , Item $item)
     {
-        addVendors(["jalali-date-picker"]);
+        addVendors(["jalali-date-picker" , "formrepeater"]);
 
         $data["title"] = "لیست قیمت ها";
         $data["sizes"] = Size::all();
         $data["product"] = $product;
         $data["item"] = $item;
-        $data["price"] = $item->prices()->where("item_id" , $item->id)->first();
+        $data["price"] = $item->prices()->where("item_id" , $item->id)->orderBy("id" , "DESC")->first();
+        $data["cities"] =   City::GetActiveCities()->get();
 
         return view($this->view_folder."show" , compact("data"));
 

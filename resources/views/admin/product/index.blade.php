@@ -110,19 +110,6 @@
 
                                             <!--begin::Menu item-->
                                             <div class="menu-item">
-                                                <a href="{{ route("product.shipping_price.index" , $product->slug) }}" class="menu-link px-1 py-3">
-                                                    <span class="menu-bullet me-0 mx-3">
-                                                        {!! getIcon(name: "truck" , class: "text-gray-700") !!}
-                                                    </span>
-                                                    <span class="menu-title">
-                                                        ویرایش هزینه های ارسال
-                                                    </span>
-                                                </a>
-                                            </div>
-
-
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item">
                                                 <a href="{{ route("product.image.index" , $product->slug) }}" class="menu-link px-1 py-3">
                                                     <span class="menu-bullet me-0 mx-3">
                                                          {!! getIcon(name: "picture" , class: "text-gray-700") !!}
