@@ -13,7 +13,8 @@ class Item extends Model
 
     protected $fillable = [
         "product_id"        ,   "size_id"           ,
-        "stock"             ,   "status"
+        "stock"             ,   "status"            ,
+        "shipping_price"    ,
     ];
 
     protected $filtering_class = PublicFilter::class;
@@ -21,5 +22,15 @@ class Item extends Model
     public function prices()
     {
         return $this->hasMany(Price::class , "item_id");
+    }
+
+    public function shippingPrices()
+    {
+        return $this->hasMany(ShippingPrice::class , "item_id");
+    }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class , "size_id");
     }
 }

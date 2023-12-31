@@ -32,6 +32,10 @@
                 <input id="stock" type="number" name="stock" class="form-control" value="{{ $data["item"]->stock }}">
             </div>
             <div class="col-md-2">
+                <label for="shipping_price" class="form-label">هزینه ی ارسال کلی(تومان)</label>
+                <input id="shipping_price" type="number" name="shipping_price" value="{{ $data["item"]->shipping_price }}" class="form-control">
+            </div>
+            <div class="col-md-2">
                 <label for="status" class="form-label">وضعیت</label>
                 <select id="status" name="status" class="form-select">
                     <option @if($data["item"]->status) selected @endif value="1">فعال</option>
@@ -55,6 +59,9 @@
             </div>
 
         </div>
+
+        @include("admin.product.detail.item.shipping_show" , $data)
+        @include("admin.product.detail.city_shipping" , $data)
 
         <div class="row">
             <div class="col-12 text-center">
@@ -82,6 +89,24 @@
                     }
                 }
             });
+
+
+            $('#shipping_prices').repeater({
+                initEmpty: false,
+
+                defaultValues: {
+                    'text-input': 'foo'
+                },
+
+                show: function () {
+                    $(this).slideDown();
+                },
+
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            });
+
         </script>
     </x-slot:scripts>
 </x-default-layout>

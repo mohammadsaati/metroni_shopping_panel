@@ -33,6 +33,10 @@
                 <input id="stock" type="number" name="stock" class="form-control">
             </div>
             <div class="col-md-2">
+                <label for="shipping_price" class="form-label">هزینه ی ارسال کلی(تومان)</label>
+                <input id="shipping_price" type="number" name="shipping_price" class="form-control">
+            </div>
+            <div class="col-md-2">
                 <label for="status" class="form-label">وضعیت</label>
                 <select id="status" name="status" class="form-select">
                     <option value="1" selected>فعال</option>
@@ -56,6 +60,8 @@
             </div>
 
         </div>
+
+        @include("admin.product.detail.city_shipping" , $data)
 
         <div class="row">
             <div class="col-12 text-center">
@@ -83,6 +89,24 @@
                     }
                 }
             });
+
+
+            $('#shipping_prices').repeater({
+                initEmpty: false,
+
+                defaultValues: {
+                    'text-input': 'foo'
+                },
+
+                show: function () {
+                    $(this).slideDown();
+                },
+
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            });
+
         </script>
     </x-slot:scripts>
 </x-default-layout>

@@ -10,7 +10,7 @@ class ShippingPrice extends Model
     use HasFactory;
 
     protected $fillable = [
-        "city_id"           ,   "product_id"    ,
+        "city_id"           ,   "item_id"    ,
         "price"
     ];
 
@@ -19,8 +19,8 @@ class ShippingPrice extends Model
         return $this->belongsTo(City::class , "city_id");
     }
 
-    public function product()
+    public function item()
     {
-        return $this->belongsTo(Product::class , "product_id");
+        return $this->belongsTo(Item::class , "item_id");
     }
 }

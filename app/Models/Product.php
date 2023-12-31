@@ -16,12 +16,12 @@ class Product extends Model
     use HasFactory , FilterTrait;
 
     protected $fillable = [
-      "name"                ,       "slug"          ,
-      "image"               ,       "category_id"   ,
-      "brand_id"            ,       "description"   ,
-      "status"              ,       "en_name"       ,
-      "shipping_price"      ,       "is_amazing"    ,
-      "is_amazing_date"
+      "name"                ,       "slug"              ,
+      "image"               ,       "category_id"       ,
+      "brand_id"            ,       "description"       ,
+      "status"              ,       "en_name"           ,
+      "is_amazing"          ,       "is_amazing_date"
+
     ];
 
     protected function isAmazingDate() : Attribute
@@ -67,11 +67,6 @@ class Product extends Model
     public function featureProducts()
     {
         return $this->hasMany(FeatureProduct::class , "product_id");
-    }
-
-    public function shippingPrice()
-    {
-        return $this->hasMany(ShippingPrice::class , "product_id");
     }
 
     public function images()

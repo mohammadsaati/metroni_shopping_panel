@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-md-4 mb-10">
-        <label for="shipping_price" class="form-label">قیمیت ارسال کلی (تومان)</label>
-        <input id="shipping_price" type="number" name="shipping_price" class="form-control">
+    <div class="col-12">
+        <h4>هزینه ی ارسال جدید برای شهر ها</h4>
     </div>
 </div>
+
 <div class="row">
     <!--begin::Repeater-->
     <div class="mb-10" id="shipping_prices">
@@ -15,6 +15,7 @@
                         <div class="col-md-2">
                             <label for="size" class="form-label">شهر</label>
                             <select id="size" name="city_id" class="form-select" data-placeholder="انتخاب شهر">
+                                <option value="">انتخاب شهر</option>
                                 @foreach($data["cities"] as $city)
                                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                                 @endforeach

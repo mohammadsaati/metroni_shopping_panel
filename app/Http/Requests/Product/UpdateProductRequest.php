@@ -34,7 +34,6 @@ class UpdateProductRequest extends FormRequest
             "category_id"       =>  "required|exists:categories,id" ,
             "categories"        =>   "nullable|array" ,
             "image"             =>  "sometimes|file|mimes:jpg,png,jpeg,svg" ,
-            "shipping_price"    =>  "required|int" ,
             "brand_id"          =>  "nullable|exists:brands,id" ,
             "cities"            =>  "nullable|array" ,
             "status"            =>  "required|in:0,1" ,

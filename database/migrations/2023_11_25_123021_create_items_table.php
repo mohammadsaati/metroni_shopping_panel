@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("product_id");
+            $table->integer("shipping_price");
             $table->unsignedBigInteger("size_id")->nullable();
             $table->integer("stock")->default(0);
             $table->integer("status")->default(1)->comment("1 active | 0 deActive");

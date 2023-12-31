@@ -22,12 +22,13 @@ class UpdateItemRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "size_id"       =>  "required|exists:sizes,id" ,
-            "stock"         =>  "required|int" ,
-            "status"        =>  "required|in:1,0" ,
-            "price"         =>  "required|int" ,
-            "discount"      =>  "nullable" ,
-            "off_deadline"  =>  "nullable"
+            "size_id"           =>  "required|exists:sizes,id" ,
+            "stock"             =>  "required|int" ,
+            "status"            =>  "required|in:1,0" ,
+            "price"             =>  "required|int" ,
+            "shipping_price"    =>  "required|int" ,
+            "discount"          =>  "nullable" ,
+            "off_deadline"      =>  "nullable"
         ];
     }
 }

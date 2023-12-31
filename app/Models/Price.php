@@ -22,7 +22,7 @@ class Price extends Model
     protected function offDeadline() : Attribute
     {
         return Attribute::make(
-            get: fn ($value) => CalendarUtils::strftime("Y/m/d" , strtotime(Carbon::parse($value))),
+            get: fn ($value) => $value ? CalendarUtils::strftime("Y/m/d" , strtotime(Carbon::parse($value))) : null,
             set: fn ($value) => $this->castOffDeadline($value),
         );
     }
