@@ -40,4 +40,10 @@
         </tbody>
 
     </table>
+
+    <div class="col-12 text-center">
+        <ul class="pagination">
+            {!! $data["products"]->links() !!}
+        </ul>
+    </div>
 </div>

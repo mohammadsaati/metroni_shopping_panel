@@ -46,7 +46,7 @@ class SectionController extends Controller
         $data["title"] = $section->name;
         $data["section"] = $section;
         $data["section_product_ids"] = $section->products->pluck("id")->toArray();
-        $data["products"] = Product::query()->whereNotIn("id" , $data["section_product_ids"])->get();
+        $data["products"] = Product::query()->whereNotIn("id" , $data["section_product_ids"])->paginate(5)->appends(\request()->query());
 
         return view($this->view_folder."show" , compact("data"));
     }
