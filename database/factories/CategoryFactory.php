@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,13 +15,16 @@ class CategoryFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $model = Category::class;
     public function definition(): array
     {
         return [
-            "name"      =>  $this->faker->words(2) ,
+            "name"      =>  $this->faker->sentence(7) ,
             "slug"      =>  $this->faker->slug ,
-            "parent_id" =>  null ,
+            "parent_id" =>   $this->faker->randomElement( Category::all()->pluck("id")->toArray() ) ,
+            "priority"      =>  $this->faker->randomDigitNotZero() ,
             "image"     =>  $this->faker->biasedNumberBetween(1 , 10).".jpg" ,
+            "status"        =>  $this->faker->randomElement( [0 , 1] )
         ];
     }
 }
