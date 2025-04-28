@@ -12,6 +12,7 @@ use App\Models\Price;
 use App\Models\Product;
 use App\Models\ProductSection;
 use App\Models\Section;
+use App\Models\SectionImage;
 use App\Models\ShippingPrice;
 use App\Models\Size;
 use App\Models\Slider;
@@ -37,7 +38,8 @@ class DatabaseSeeder extends Seeder
 //      ShippingPrice::factory("20")->create();
 //      Price::factory(100)->create();
 //      Section::factory(5)->create();
-//      ProductSection::factory(50)->create();
+//      SectionImage::factory(8)->create();
+//      ProductSection::factory(200)->create();
 //      Slider::factory(7)->create();
 
 
