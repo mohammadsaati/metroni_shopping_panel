@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
@@ -17,10 +18,16 @@ use App\Http\Controllers\SizeController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [DashboardController::class, 'index']);
+Route::controller(AdminController::class)->as('admin.')->group(function () {
+    Route::get('login', 'loginPage')->name('login');
+    Route::post('login', 'login')->name('loginAction');
+    Route::get('create', 'create')->name('create');
+    Route::post('register', 'register')->name('register');
+    Route::get('logout', 'logout')->name('logout');
+});
 
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
 
 /*********************************
  * ****** Category Routes *******
