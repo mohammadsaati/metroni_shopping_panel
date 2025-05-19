@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\PublicFilter;
 use App\Http\Requests\Brand\CreateBrandRequest;
 use App\Http\Requests\Brand\UpdateBrandRequest;
+use App\Http\Resources\brand\BrandResource;
 use App\Models\Brand;
 use App\Services\BrandService;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ class BrandController extends Controller
     {
         $data["title"] = "برند ها";
         $data["brands"] = $this->service->showAll($filter);
+
+        if (request()->ajax()) {
+            return BrandResource::collection($data["brands"]);
+        }
 
         return view($this->view_folder."index" , compact("data"));
     }
@@ -61,8 +66,4 @@ class BrandController extends Controller
         }
 
     }
-
-
-
-
 }

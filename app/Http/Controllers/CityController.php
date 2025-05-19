@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\PublicFilter;
 use App\Http\Requests\City\CreateCityRequest;
 use App\Http\Requests\City\UpdateCityRequest;
+use App\Http\Resources\city\CityResource;
 use App\Models\City;
 use App\Services\CityService;
 use Illuminate\Http\Request;
@@ -21,6 +22,10 @@ class CityController extends Controller
     {
         $data["title"] = "شهر ها";
         $data["cities"] = $this->service->showAll($filter);
+
+        if (\request()->ajax()) {
+            return CityResource::collection($data['cities']);
+        }
 
         return view($this->view_folder."index" , compact("data"));
     }

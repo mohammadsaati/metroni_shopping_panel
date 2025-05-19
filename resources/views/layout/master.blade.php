@@ -37,6 +37,7 @@
         {!! sprintf('<link rel="stylesheet" href="%s">', asset($path)) !!}
     @endforeach
     <!--end::Custom Stylesheets-->
+    @stack('header')
 </head>
 <!--end::Head-->
 
@@ -71,6 +72,7 @@
 @yield("scripts" , "")
 @yield("extra_scripts" , "")
 @yield("delete-scripts" , "")
+@stack('footer')
 
 </body>
 <!--end::Body-->

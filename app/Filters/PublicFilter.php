@@ -11,6 +11,11 @@
          return $this->builder->where("name" , "LIKE" , "%".$name."%");
      }
 
+     public function search($name)
+     {
+         return $this->builder->where("name" , "LIKE" , "%".$name."%");
+     }
+
      public function status($status = "0")
      {
          return $this->builder->where("status" , "LIKE" , "%".$status."%");

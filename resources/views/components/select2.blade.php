@@ -39,12 +39,23 @@
                         dataType: 'json',
                         delay: $select.data('delay') || 250,
                         data: function(params) {
-                            return {
+                            // Start with default params
+                            let queryParams = {
                                 search: params.term || '', // Search term
                                 page: params.page || 1    // Pagination page
                             };
+
+                            // Add extra filters dynamically from data-* attributes
+                            let extraFilters = $select.data('filters'); // Expecting a JSON object in data-filters
+                            if (extraFilters && typeof extraFilters === 'object') {
+                                queryParams = { ...queryParams, ...extraFilters };
+                            }
+
+                            return queryParams;
                         },
                         processResults: function(data, params) {
+                            const page = params.page || 1;
+
                             $errorDiv.hide(); // Hide error message on success
                             return {
                                 results: data.data.map(item => ({
@@ -52,7 +63,7 @@
                                     text: item.title || item.name || item.label || item.value
                                 })),
                                 pagination: {
-                                    more: (params.page * 10) < data.meta.total // Indicates if more pages are available
+                                    more: (page * 20) < data.meta.total // Indicates if more pages are available
                                 }
                             };
                         },
