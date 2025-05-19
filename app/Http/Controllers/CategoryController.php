@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Filters\CategoryFilter;
 use App\Http\Requests\Category\CreateCategoryRequest;
 use App\Http\Requests\category\UpdateCategoryRequest;
+use App\Http\Resources\category\CategoryResource;
 use App\Models\Category;
 use App\Services\CategoryService;
 use Illuminate\Http\Request;
@@ -26,6 +27,10 @@ class CategoryController extends Controller
     {
         $data["title"]      = trans("panel.category_index_title");
         $data["categories"] = $this->service->showAll($filter);
+
+        if (request()->ajax()){
+            return CategoryResource::collection($data["categories"]);
+        }
 
         return view($this->view_folder.".index" , compact("data"));
     }
@@ -56,20 +61,13 @@ class CategoryController extends Controller
 
     public function update(UpdateCategoryRequest $request , Category $category)
     {
-
-
         if (!\request()->ajax())
         {
-
             $this->service->updateCategory($request->toArray() , $category);
             return redirect()->route("category.index");
-
         } else {
-
             return $this->service->ajaxUpdate($request->toArray() , $category);
-
         }
-
-
     }
+
 }

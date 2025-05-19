@@ -73,10 +73,6 @@ class ProductController extends Controller
     {
         addVendors(["tinymce" , "jalali-date-picker" , "formrepeater"]);
 
-        $data["categories"] = Category::GetParents()->get();
-        $data["related_categories"] = Category::GetSubCategories()->get();
-        $data["brands"] = Brand::GetActiveBrands()->get();
-        $data["cities"] =   City::GetActiveCities()->get();
         $data["sizes"]  =   Size::all();
         $data["features"] = Feature::GetActive()->get();
 

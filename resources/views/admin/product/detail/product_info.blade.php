@@ -12,21 +12,32 @@
             <div class="col-6">
                 <div class="mb-10">
                     <label for="category" class="required form-label">دسته بندی اصلی</label>
-                    <select id="category" name="category_id" class="form-select">
-                        <option>انتخاب دسته بندی</option>
-                        @foreach($data["categories"] as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                    </select>
+                    <x-select2 :options="[
+                        'id' => 'category',
+                        'name' => 'category[]',
+                        'data-control' => 'select2',
+                        'data-placeholder' => trans('messages.select_place_holder'),
+                        'data-allow-clear' => 'true',
+                        'data-filters' => json_encode(['isParent' => true]),
+                        'data-close-on-select' => 'false',
+                        'data-url' => route('category.index'),
+                    ]" />
+
                 </div>
             </div>
             <div class="col-6">
                 <label for="categories" class="required form-label">دسته بندی های مربوطه</label>
-                <select id="categories" name="categories[]" class="form-select" data-control="select2" data-placeholder="انتخاب دسته بندی ها" multiple="multiple">
-                    @foreach($data["related_categories"] as $related_category)
-                        <option value="{{ $related_category->id }}">{{ $related_category->name }}</option>
-                    @endforeach
-                </select>
+                <x-select2 :options="[
+                        'id' => 'categories',
+                        'name' => 'categories[]',
+                        'data-control' => 'select2',
+                        'data-placeholder' => trans('messages.select_place_holder'),
+                        'data-allow-clear' => 'true',
+                        'multiple' => 'multiple',
+                        'data-filters' => json_encode(['isParent' => false]),
+                        'data-close-on-select' => 'false',
+                        'data-url' => route('category.index'),
+                    ]" />
             </div>
         </div>
         <div class="mb-10">
@@ -129,19 +140,28 @@
             <div class="row">
                 <div class="col-6">
                     <label for="brand" class="form-label">برند</label>
-                    <select id="brand" name="brand_id" class="form-select" data-control="select2" data-placeholder="انتخاب برند">
-                        @foreach($data["brands"] as $brand)
-                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
-                        @endforeach
-                    </select>
+                    <x-select2 :options="[
+                        'id' => 'brand',
+                        'name' => 'brand',
+                        'data-control' => 'select2',
+                        'data-placeholder' => trans('messages.select_place_holder'),
+                        'data-allow-clear' => 'true',
+                        'data-close-on-select' => 'false',
+                        'data-url' => route('brand.index'),
+                    ]" />
                 </div>
                 <div class="col-6">
                     <label for="cities" class="form-label">محدودیت شهر</label>
-                    <select id="cities" name="cities" class="form-select" data-control="select2" data-placeholder="انتخاب شهر" multiple>
-                        @foreach($data["cities"] as $city)
-                            <option value="{{ $city->id }}">{{ $city->name }}</option>
-                        @endforeach
-                    </select>
+                    <x-select2 :options="[
+                        'id' => 'cities',
+                        'name' => 'cities',
+                        'data-control' => 'select2',
+                        'data-placeholder' => trans('messages.select_place_holder'),
+                        'data-allow-clear' => 'true',
+                        'multiple' => 'multiple',
+                        'data-close-on-select' => 'false',
+                        'data-url' => route('city.index'),
+                    ]" />
                 </div>
             </div>
             <div data-kt-buttons="true" class="my-10">
